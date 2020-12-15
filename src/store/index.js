@@ -2,7 +2,7 @@ import { createStore, applyMiddleware, compose } from 'redux'
 import createSageMiddleware from 'redux-saga'
 
 import rootReducer from '../reducers'
-import rootSaga from ''
+import rootSaga from '../sagas'
 
 const configureStore = () => {
   const sagaMiddleware = createSageMiddleware()
@@ -15,6 +15,7 @@ const configureStore = () => {
   )
 
   sagaMiddleware.run(rootSaga)
+  store.dispatch({ type: 'HELLO' })
   return store
 }
 
