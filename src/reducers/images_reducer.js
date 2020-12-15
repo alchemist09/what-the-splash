@@ -1,7 +1,7 @@
 import { IMAGES } from '../constants'
 
 const imagesReducer = (state=[], action) => {
-  if(action.type == IMAGES.LOAD_SUCCESS) {
+  if(action.type === IMAGES.LOAD_SUCCESS) {
     return state = [
       ...state,
       ...action.images
