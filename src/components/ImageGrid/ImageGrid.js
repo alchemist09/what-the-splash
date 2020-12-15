@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { IMAGES } from '../../constants';
+import { loadImages } from '../../actions';
 
 import './styles.css';
 
@@ -55,7 +55,7 @@ const mapStateToProps = ({ loading, images, error }) => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    loadImages: () => dispatch({ type: IMAGES.LOAD })
+    loadImages: () => dispatch(loadImages())
 })
 
 export default connect(
