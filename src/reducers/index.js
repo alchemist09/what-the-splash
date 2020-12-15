@@ -4,9 +4,9 @@ import imagesReducer from './images_reducer'
 import errorReducer from './error_reducer'
 
 const rootReducer = combineReducers({
-  loadingReducer,
-  imagesReducer,
-  errorReducer
+  loading: loadingReducer,
+  images: imagesReducer,
+  error: errorReducer
 })
 
 export default rootReducer
