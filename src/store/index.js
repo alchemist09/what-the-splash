@@ -10,4 +10,4 @@ const configureStore = () => {
   return store
 }
 
-export { configureStore }
+export default configureStore
