@@ -2,7 +2,7 @@ import { IMAGES } from '../constants'
 
 const loadingReducer = (state = false, action) => {
   switch(action.type) {
-    case IMAGES.LAOD_START:
+    case IMAGES.LOAD:
       return true
     case IMAGES.LOAD_SUCCESS:
       return false
