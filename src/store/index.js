@@ -1,5 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
 import createSageMiddleware from 'redux-saga'
+// import { IMAGES } from '../constants'
 
 import rootReducer from '../reducers'
 import rootSaga from '../sagas'
@@ -15,7 +16,11 @@ const configureStore = () => {
   )
 
   sagaMiddleware.run(rootSaga)
-  store.dispatch({ type: 'HELLO' })
+  // store.dispatch({ type: 'LOGOUT' })
+  // store.dispatch({ type: 'LOGIN' })
+  // store.dispatch({ type: 'LOGOUT' })
+  // store.dispatch({ type: IMAGES.LOAD })
+  // store.dispatch({ type: 'CHANT' })
   return store
 }
 
