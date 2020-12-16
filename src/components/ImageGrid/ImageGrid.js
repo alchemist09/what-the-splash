@@ -23,8 +23,8 @@ class ImageGrid extends Component {
     }
 
     render() {
-        const { images } = this.state;
-        const { loadImages } = this.props
+        // const { images } = this.state;
+        const { loadImages, images } = this.props
         return (
             <div className="content">
                 <section className="grid">
