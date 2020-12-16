@@ -9,7 +9,7 @@ import './styles.css';
 class ImageGrid extends Component {
 
     componentDidMount() {
-        
+        this.props.loadImages()
     }
 
     render() {
