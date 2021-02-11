@@ -3,7 +3,9 @@ const URL = "https://api.unsplash.com/photos/"
 
 const fetchImages = async page => {
   const response = await fetch(`${URL}${KEY}&per_page=6&page=${page}`)
-  const data = response.json()
+  // console.log(response)
+  const data = await response.json()
+  // console.log("[DATA].......", data)
   if(response.status >= 400) {
     throw new Error(data.errors)
   }
