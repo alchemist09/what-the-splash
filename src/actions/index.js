@@ -23,6 +23,11 @@ const loadStats = () => ({
    stats
  })
 
+ const setErrorStats = error => ({
+   type: STATS.LOAD_FAIL,
+   error
+ })
+
 export {
   loadImages,
   setImages,
