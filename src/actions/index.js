@@ -31,5 +31,8 @@ const loadStats = () => ({
 export {
   loadImages,
   setImages,
-  setError
+  setError,
+  loadStats,
+  setStats,
+  setErrorStats
 }
