@@ -18,6 +18,11 @@ const loadStats = () => ({
   type: STATS.LOAD
 })
 
+ const setStats = stats => ({
+   type: STATS.LOAD_SUCCESS,
+   stats
+ })
+
 export {
   loadImages,
   setImages,
