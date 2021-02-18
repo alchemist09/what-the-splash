@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadImages } from '../../actions';
+import { loadImages, loadStats } from '../../actions';
 import Button from '../Button'
 
 import './styles.css';
@@ -11,10 +11,19 @@ class ImageGrid extends Component {
 
     componentDidMount() {
         this.props.loadImages()
+        this.props.loadStatistics()
     }
 
     render() {
-        const { loading, loadImages, images, error } = this.props
+        const { loading, images, stats, error, loadImages } = this.props
+        const { 
+            downloads, 
+            views, 
+            new_photos, 
+            new_photographers, 
+            new_developers, 
+            new_applications 
+        } = stats;
         return (
             <div className="content">
                 <section className="grid">
@@ -32,6 +41,15 @@ class ImageGrid extends Component {
                         </div>
                     ))}
                 </section>
+                {!loading && !error && <div>
+                    <h3>UnSplash Stats</h3>
+                    <p>Downloads: {downloads}</p>
+                    <p>Views: {views}</p>
+                    <p>New Photos: {new_photos}</p>
+                    <p>New Photographers: {new_photographers}</p>
+                    <p>New Developers: {new_developers}</p>
+                    <p>New Applications: {new_applications}</p>
+                </div>}
                 {error && <div className="error">{JSON.stringify(error)}</div>}
                 <Button 
                     loading={loading} 
@@ -42,14 +60,16 @@ class ImageGrid extends Component {
     }
 }
 
-const mapStateToProps = ({ loading, images, error }) => ({
+const mapStateToProps = ({ loading, images, stats, error }) => ({
     loading,
     images,
-    error
+    error,
+    stats
 })
 
 const mapDispatchToProps = dispatch => ({
-    loadImages: () => dispatch(loadImages())
+    loadImages: () => dispatch(loadImages()),
+    loadStatistics: () => dispatch(loadStats())
 })
 
 export default connect(
