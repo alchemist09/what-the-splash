@@ -1,14 +1,14 @@
 import { call, takeEvery, put } from 'redux-saga/effects'
-import { setStats, setErrorStats } from '../actions'
+import { setImageStats, setImageStatsError } from '../actions'
 import { STATS } from '../constants'
 import { fetchStats } from '../api'
 
 function* handleStatsLoad() {
   try {
     const image_stats = yield call(fetchStats)
-    yield put(setStats(image_stats))
+    yield put(setImageStats(image_stats))
   } catch (error) {
-    yield put(setErrorStats(error.toString()))
+    yield put(setImageStatsError(error.toString()))
   }
 }
 
