@@ -1,5 +1,7 @@
 import { IMAGE_STATS } from '../constants'
-import { takeEvery } from 'redux-saga/effects'
+import { takeEvery, select } from 'redux-saga/effects'
+
+const getImages = state => state.images
 
 function* handleImageStatsLoad() {
 
