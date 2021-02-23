@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { loadImages, loadImageStats } from '../../actions';
+import { loadImages, loadSiteStats } from '../../actions';
 import Button from '../Button'
 
 import './styles.css';
@@ -11,7 +11,7 @@ class ImageGrid extends Component {
 
     componentDidMount() {
         this.props.loadImages()
-        this.props.loadStatistics()
+        this.props.loadSiteStatistics()
     }
 
     render() {
@@ -69,7 +69,7 @@ const mapStateToProps = ({ loading, images, stats, error }) => ({
 
 const mapDispatchToProps = dispatch => ({
     loadImages: () => dispatch(loadImages()),
-    loadStatistics: () => dispatch(loadImageStats())
+    loadSiteStatistics: () => dispatch(loadSiteStats())
 })
 
 export default connect(
