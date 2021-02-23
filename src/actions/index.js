@@ -55,5 +55,8 @@ export {
   setError,
   loadSiteStats,
   setSiteStats,
-  setSiteStatsError
+  setSiteStatsError,
+  loadImageStats,
+  setImageStats,
+  setImageStatsError
 }
