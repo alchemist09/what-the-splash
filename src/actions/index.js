@@ -1,4 +1,4 @@
-import { IMAGES, STATS } from '../constants'
+import { IMAGES, STATS, IMAGE_STATS } from '../constants'
 
 const loadImages = () => ({
   type : IMAGES.LOAD
@@ -25,6 +25,27 @@ const loadSiteStats = () => ({
 
  const setSiteStatsError = error => ({
    type: STATS.LOAD_FAIL,
+   error
+ })
+
+ const loadImageStats = id => ({
+   type: IMAGE_STATS.LOAD,
+   id
+ })
+
+ const setImageStats = ({ id, downloads, views, likes }) => ({
+   type: IMAGE_STATS.LOAD_SUCCESS,
+   id,
+   payload: {
+     downloads,
+     views,
+     likes
+   }
+ })
+
+ const setImageStatsError = ({ id, error }) => ({
+   type: IMAGE_STATS.LOAD_FAIL,
+   id,
    error
  })
 
