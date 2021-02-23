@@ -14,16 +14,16 @@ const setError = error => ({
   error
 })
 
-const loadImageStats = () => ({
+const loadSiteStats = () => ({
   type: STATS.LOAD
 })
 
- const setImageStats = stats => ({
+ const setSiteStats = stats => ({
    type: STATS.LOAD_SUCCESS,
    stats
  })
 
- const setImageStatsError = error => ({
+ const setSiteStatsError = error => ({
    type: STATS.LOAD_FAIL,
    error
  })
@@ -32,7 +32,7 @@ export {
   loadImages,
   setImages,
   setError,
-  loadImageStats,
-  setImageStats,
-  setImageStatsError
+  loadSiteStats,
+  setSiteStats,
+  setSiteStatsError
 }
