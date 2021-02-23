@@ -23,4 +23,17 @@ const fetchStats = async () => {
   return data
 }
 
-export { fetchImages, fetchStats }
+const fetchImageStats = async id => {
+  const response = await fetch(`${URL}${id}/statistics${KEY}`)
+  const data = await response.json()
+  if(response.data >= 400) {
+    throw new Error(data.errors)
+  }
+  return data
+}
+
+export { 
+  fetchImages, 
+  fetchStats,
+  fetchImageStats
+}
