@@ -1,12 +1,17 @@
-import { IMAGE_STATS } from '../constants'
-import { takeEvery, select } from 'redux-saga/effects'
+import { IMAGES } from '../constants'
+import { take, fork } from 'redux-saga/effects'
 
-const getImages = state => state.images
-
-function* handleImageStatsLoad() {
-
+function* handleImageStatsLoad(id) {
+  console.log(`handle stats request for image ${id}`)
 }
 
 function* watchImageStatsLoad() {
-  yield takeEvery(IMAGE_STATS.LOAD, handleImageStatsLoad)
+  while(true) {
+    const { images } = yield take(IMAGES.LOAD_SUCCESS)
+    for(let i=0; i < images.length; i++) {
+      yield fork(handleImageStatsLoad, images[i].id)
+    }
+  }
 }
+
+export default watchImageStatsLoad
