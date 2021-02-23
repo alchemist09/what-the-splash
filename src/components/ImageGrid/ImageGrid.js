@@ -15,7 +15,7 @@ class ImageGrid extends Component {
     }
 
     render() {
-        const { loading, images, stats, error, loadImages } = this.props
+        const { loading, images, stats, image_stats, error, loadImages } = this.props
         const { 
             downloads, 
             views, 
@@ -24,6 +24,10 @@ class ImageGrid extends Component {
             new_developers, 
             new_applications 
         } = stats;
+
+        console.log('IMAGE STATS: ', image_stats)
+        console.log("IMAGES: ", images)
+
         return (
             <div className="content">
                 <section className="grid">
@@ -38,6 +42,13 @@ class ImageGrid extends Component {
                                 src={image.urls.small}
                                 alt={image.user.username}
                             />
+                            {image_stats[image.id] && 
+                                <div>
+                                    <span>Downloads: {image_stats[image.id].payload.downloads}&nbsp;&nbsp;&nbsp;</span>
+                                    <span>Views: {image_stats[image.id].payload.views}&nbsp;&nbsp;&nbsp;</span>
+                                    <span>Likes: {image_stats[image.id].payload.likes}&nbsp;&nbsp;&nbsp;</span>
+                                </div>
+                            }
                         </div>
                     ))}
                 </section>
@@ -60,11 +71,12 @@ class ImageGrid extends Component {
     }
 }
 
-const mapStateToProps = ({ loading, images, stats, error }) => ({
+const mapStateToProps = ({ loading, images, stats, image_stats, error }) => ({
     loading,
     images,
     error,
-    stats
+    stats,
+    image_stats
 })
 
 const mapDispatchToProps = dispatch => ({
