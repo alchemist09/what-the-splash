@@ -44,9 +44,9 @@ class ImageGrid extends Component {
                             />
                             {image_stats[image.id] && 
                                 <div>
-                                    <span>Downloads: {image_stats[image.id].payload.downloads}&nbsp;&nbsp;&nbsp;</span>
-                                    <span>Views: {image_stats[image.id].payload.views}&nbsp;&nbsp;&nbsp;</span>
-                                    <span>Likes: {image_stats[image.id].payload.likes}&nbsp;&nbsp;&nbsp;</span>
+                                    <span>Downloads: {!image_stats[image.id].loading && image_stats[image.id].payload.downloads}&nbsp;&nbsp;&nbsp;</span>
+                                    <span>Views: {!image_stats[image.id].loading && image_stats[image.id].payload.views}&nbsp;&nbsp;&nbsp;</span>
+                                    <span>Likes: {!image_stats[image.id].loading && image_stats[image.id].payload.likes}&nbsp;&nbsp;&nbsp;</span>
                                 </div>
                             }
                         </div>
