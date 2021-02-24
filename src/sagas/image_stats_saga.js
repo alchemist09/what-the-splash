@@ -1,11 +1,12 @@
 import { IMAGES } from '../constants'
 import { take, fork, call, put } from 'redux-saga/effects'
 import { fetchImageStats } from '../api'
-import { setImageStats, setImageStatsError} from '../actions'
+import { loadImageStats, setImageStats, setImageStatsError} from '../actions'
 
 function* handleImageStatsLoad(id) {
   console.log(`handle stats request for image ${id}`)
   try {
+    yield put(loadImageStats(id))
     const image_stats = yield call(fetchImageStats, id)
     yield put(setImageStats({
       id,
