@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { loadImages, loadSiteStats } from '../../actions';
 import Button from '../Button'
+import Stats from '../Stats'
 
 import './styles.css';
 
@@ -42,13 +43,7 @@ class ImageGrid extends Component {
                                 src={image.urls.small}
                                 alt={image.user.username}
                             />
-                            {image_stats[image.id] && 
-                                <div>
-                                    <span>Downloads: {!image_stats[image.id].loading && image_stats[image.id].payload.downloads}&nbsp;&nbsp;&nbsp;</span>
-                                    <span>Views: {!image_stats[image.id].loading && image_stats[image.id].payload.views}&nbsp;&nbsp;&nbsp;</span>
-                                    <span>Likes: {!image_stats[image.id].loading && image_stats[image.id].payload.likes}&nbsp;&nbsp;&nbsp;</span>
-                                </div>
-                            }
+                            <Stats stats={image_stats} id={image.id} />
                         </div>
                     ))}
                 </section>
