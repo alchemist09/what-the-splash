@@ -7,7 +7,7 @@ const Stats = ({ stats, id }) => {
 
   console.log("Stats Prop", stats)
   console.log("Stats ID: ", id)
-  // const { downloads, views, likes, error } = stats.payload
+  
   return (
     <Fragment>
       <span>{stats[id] && stats[id].error && 'Error!!!'}</span>
