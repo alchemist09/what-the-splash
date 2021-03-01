@@ -48,15 +48,6 @@ class ImageGrid extends Component {
                         </div>
                     ))}
                 </section>
-                {/*!loading && !error && <div>
-                    <h3>UnSplash Stats</h3>
-                    <p>Downloads: {downloads}</p>
-                    <p>Views: {views}</p>
-                    <p>New Photos: {new_photos}</p>
-                    <p>New Photographers: {new_photographers}</p>
-                    <p>New Developers: {new_developers}</p>
-                    <p>New Applications: {new_applications}</p>
-                </div>*/}
                 <SiteStats loading={loading} {...stats} />
                 {error && <div className="error">{JSON.stringify(error)}</div>}
                 <Button 
