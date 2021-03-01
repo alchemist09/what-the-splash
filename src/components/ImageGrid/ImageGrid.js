@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { loadImages, loadSiteStats } from '../../actions';
 import Button from '../Button'
 import Stats from '../Stats'
+import SiteStats from '../SiteStats'
 
 import './styles.css';
 
@@ -47,7 +48,7 @@ class ImageGrid extends Component {
                         </div>
                     ))}
                 </section>
-                {!loading && !error && <div>
+                {/*!loading && !error && <div>
                     <h3>UnSplash Stats</h3>
                     <p>Downloads: {downloads}</p>
                     <p>Views: {views}</p>
@@ -55,7 +56,8 @@ class ImageGrid extends Component {
                     <p>New Photographers: {new_photographers}</p>
                     <p>New Developers: {new_developers}</p>
                     <p>New Applications: {new_applications}</p>
-                </div>}
+                </div>*/}
+                <SiteStats loading={loading} {...stats} />
                 {error && <div className="error">{JSON.stringify(error)}</div>}
                 <Button 
                     loading={loading} 
