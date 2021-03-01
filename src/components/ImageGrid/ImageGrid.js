@@ -18,14 +18,6 @@ class ImageGrid extends Component {
 
     render() {
         const { loading, images, stats, image_stats, error, loadImages } = this.props
-        const { 
-            downloads, 
-            views, 
-            new_photos, 
-            new_photographers, 
-            new_developers, 
-            new_applications 
-        } = stats;
 
         console.log('IMAGE STATS: ', image_stats)
         console.log("IMAGES: ", images)
