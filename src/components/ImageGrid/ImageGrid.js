@@ -32,11 +32,11 @@ class ImageGrid extends Component {
                                 image.height / image.width,
                             )}`}
                         >
+                            <Stats stats={image_stats} id={image.id} />
                             <img
                                 src={image.urls.small}
                                 alt={image.user.username}
                             />
-                            <Stats stats={image_stats} id={image.id} />
                         </div>
                     ))}
                 </section>
