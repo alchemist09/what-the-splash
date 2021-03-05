@@ -53,3 +53,7 @@ img {
 .item {
     position: relative;
 }
+
+.item:hover > .display-stats {
+    opacity: 1;
+}

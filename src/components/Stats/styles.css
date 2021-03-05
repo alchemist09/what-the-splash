@@ -6,6 +6,10 @@
   position: absolute;
   top: 10px;
   left: 10px;
+  opacity: 0.0;
+  transition: opacity .25s ease-in-out;
+  -moz-transition: opacity .25s ease-in-out;
+  -webkit-transition: opacity .25s ease-in-out;
 }
 
 .image-stats {
