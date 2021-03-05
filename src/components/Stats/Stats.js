@@ -1,4 +1,8 @@
 import React, { Fragment } from 'react'
+import icon_download from '../../assets/icons/cloud-computing.png'
+import icon_views from '../../assets/icons/eye.png'
+import icon_likes from '../../assets/icons/heart.png'
+import './styles.css'
 
 const Stats = ({ stats, id }) => {
   if(Object.keys(stats).length === 0) {
@@ -20,16 +24,16 @@ const Stats = ({ stats, id }) => {
     if(stats[id] && !stats[id].loading) {
       return (
         <Fragment>
-          <span>Downloads: {stats[id].payload.downloads}</span>
-          <span>Views: {stats[id].payload.views}</span>
-          <span>Likes: {stats[id].payload.likes}</span>
+          <span className="image-stats"><img className="icon-download" src={icon_download} alt="downloads" /> {stats[id].payload.downloads}</span>
+          <span className="image-stats"><img className="icon-download" src={icon_views} alt="views" /> {stats[id].payload.views}</span>
+          <span className="image-stats"><img className="icon-download" src={icon_likes} alt="likes" /> {stats[id].payload.likes}</span>          
         </Fragment> 
       )
     }
   }
 
   return (
-    <div>
+    <div className="display-stats">
       {renderImageStats()}
     </div>
     
