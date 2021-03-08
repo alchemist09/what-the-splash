@@ -33,7 +33,7 @@ const loadSiteStats = () => ({
    id
  })
 
- const setImageStats = ({ id, downloads, views, likes }) => ({
+ const setImageStats = ( id, downloads, views, likes ) => ({
    type: IMAGE_STATS.LOAD_SUCCESS,
    id,
    payload: {
