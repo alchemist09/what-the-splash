@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import icon_download from '../../assets/icons/cloud-computing.png'
 import icon_views from '../../assets/icons/eye.png'
 import icon_likes from '../../assets/icons/heart.png'
+import icon_error from '../../assets/icons/warning.png'
 import './styles.css'
 
 const Stats = ({ stats, id }) => {
@@ -14,7 +15,8 @@ const Stats = ({ stats, id }) => {
 
   const renderImageStats = () => {
     if(stats[id] && stats[id].error) {
-      return `Error Loading Stats for image ID: ${id}`
+      const alt_mesg = `error loading stats for image ID: ${id}`
+      return <span className="image-stats"><img src={icon_error} alt={alt_mesg} /></span>
     }
 
     if(stats[id] && stats[id].loading) {
