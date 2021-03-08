@@ -24,7 +24,7 @@ const fetchStats = async () => {
 }
 
 const fetchImageStats = async id => {
-  throw new Error('UGLY Error')
+  // throw new Error('UGLY Error')
   const response = await fetch(`${URL}${id}/statistics${KEY}`)
   const data = await response.json()
   if(response.data >= 400) {
