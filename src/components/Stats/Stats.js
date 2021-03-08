@@ -3,6 +3,7 @@ import icon_download from '../../assets/icons/cloud-computing.png'
 import icon_views from '../../assets/icons/eye.png'
 import icon_likes from '../../assets/icons/heart.png'
 import icon_error from '../../assets/icons/warning.png'
+import icon_loading from '../../assets/icons/loading.png'
 import './styles.css'
 
 const Stats = ({ stats, id }) => {
@@ -20,7 +21,8 @@ const Stats = ({ stats, id }) => {
     }
 
     if(stats[id] && stats[id].loading) {
-      return <p>Loading.......</p>
+      return <span className="image-stats"><img className="icon-download" src={icon_loading} /></span>
+      // return <p>Loading.......</p>
     }
 
     if(stats[id] && !stats[id].loading) {
