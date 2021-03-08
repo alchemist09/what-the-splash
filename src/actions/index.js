@@ -43,7 +43,7 @@ const loadSiteStats = () => ({
    }
  })
 
- const setImageStatsError = ({ id, error }) => ({
+ const setImageStatsError = (id, error) => ({
    type: IMAGE_STATS.LOAD_FAIL,
    id,
    error
