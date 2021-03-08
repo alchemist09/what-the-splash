@@ -5,21 +5,26 @@ import { loadImageStats, setImageStats, setImageStatsError} from '../actions'
 
 function* handleImageStatsLoad(id) {
   console.log(`handle stats request for image ${id}`)
-  try {
-    yield put(loadImageStats(id))
-    const image_stats = yield call(fetchImageStats, id)
-    yield put(setImageStats({
-      id,
-      downloads: image_stats.downloads.total,
-      likes: image_stats.likes.total,
-      views: image_stats.views.total
-    }))
-  } catch (error) {
-    yield put(setImageStatsError({
-      id,
-      error
-    }))
+  for(let i=0; i < 3; i++) {
+    try {
+      yield put(loadImageStats(id))
+      const image_stats = yield call(fetchImageStats, id)
+      yield put(setImageStats({
+        id,
+        downloads: image_stats.downloads.total,
+        likes: image_stats.likes.total,
+        views: image_stats.views.total
+      }))
+      return true
+    } catch (error) {
+      // yield put(setImageStatsError({
+      //   id,
+      //   error
+      // }))
+    }
   }
+
+  yield put(setImageStatsError(id, `error loading stats for image ID: ${id}`))
 }
 
 function* watchImageStatsLoad() {
