@@ -9,12 +9,13 @@ function* handleImageStatsLoad(id) {
     try {
       yield put(loadImageStats(id))
       const image_stats = yield call(fetchImageStats, id)
-      yield put(setImageStats({
+      const { downloads, likes, views } = image_stats
+      yield put(setImageStats(
         id,
-        downloads: image_stats.downloads.total,
-        likes: image_stats.likes.total,
-        views: image_stats.views.total
-      }))
+        downloads.total,
+        likes.total,
+        views.total
+      ))
       return true
     } catch (error) {
       // yield put(setImageStatsError({
