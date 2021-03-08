@@ -14,7 +14,7 @@ const Stats = ({ stats, id }) => {
 
   const renderImageStats = () => {
     if(stats[id] && stats[id].error) {
-      return <p>Error!!!</p>
+      return `Error Loading Stats for image ID: ${id}`
     }
 
     if(stats[id] && stats[id].loading) {
