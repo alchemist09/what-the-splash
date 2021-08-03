@@ -30,6 +30,7 @@ function* handleImageStatsLoad(id) {
 
 function* watchImageStatsLoad() {
   while(true) {
+    console.log("TAKE EFFECT>>>>>>>>>>>>>>>", take())
     const { images } = yield take(IMAGES.LOAD_SUCCESS)
     for(let i=0; i < images.length; i++) {
       yield fork(handleImageStatsLoad, images[i].id)
