@@ -15,7 +15,16 @@ const configureStore = () => {
     )
   )
 
-  sagaMiddleware.run(rootSaga)
+  const taskObject = sagaMiddleware.run(rootSaga)
+  console.log("TASK OBJECT")
+  console.log(taskObject)
+  console.log("isRunning(): ",  taskObject.isRunning())
+  // taskObject.cancel()
+  // console.log("isRunning() after canceling: ",  taskObject.isRunning())
+  console.log("result(): ", taskObject.result())
+  // setTimeout(() => {
+  //   console.log("isRunning() after 30 seconds: ", taskObject.isRunning())
+  // }, 30000)
   // store.dispatch({ type: 'LOGOUT' })
   // store.dispatch({ type: 'LOGIN' })
   // store.dispatch({ type: 'LOGOUT' })
