@@ -3,7 +3,7 @@ import { setImages, setError } from '../actions'
 import { fetchImages } from '../api'
 import { IMAGES } from '../constants'
 
-const getPage = state => state.nextPage 
+export const getPage = state => state.nextPage 
 
 function* handleImagesLoad() {
   try {
