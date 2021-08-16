@@ -16,12 +16,6 @@
     "test": "jest",
     "eject": "react-scripts eject"
   },
-  "jest": {
-    "verbose": true,
-    "transform": {
-      "^.+\\.[t|j]sx?$": "babel-jest"
-    }
-  },
   "devDependencies": {
     "jest": "^27.0.6",
     "prettier": "^1.14.0"
