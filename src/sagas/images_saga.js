@@ -5,7 +5,7 @@ import { IMAGES } from '../constants'
 
 export const getPage = state => state.nextPage 
 
-function* handleImagesLoad() {
+export function* handleImagesLoad() {
   try {
     const page = yield select(getPage)
     // console.log('page', page)
