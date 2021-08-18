@@ -1,6 +1,7 @@
 import { getPage, handleImagesLoad } from "../images_saga";
 import { runSaga } from 'redux-saga'
 import { fetchImages } from '../../api'
+import * as api from '../../api'
 import { setImages } from "../../actions";
 
 describe("Images Saga", () => {
@@ -18,14 +19,14 @@ describe("Images Saga", () => {
       getState: () => ({ nextPage: 1 })
     }
 
-    const page_no = 1
-    const images = await fetchImages(page_no)
+    const mockedImages = ['image1', 'image2', 'image3']
+    api.fetchImages = jest.fn(() => Promise.resolve(mockedImages))
 
     await runSaga(fakeStore, handleImagesLoad).done
     console.log(dispatchedActions)
-    console.log(images)
     console.log(fakeStore.getState())
     
-    expect(dispatchedActions).toContainEqual(setImages(images))
+    expect(api.fetchImages.mock.calls.length).toBe(1)
+    expect(dispatchedActions).toContainEqual(setImages(mockedImages))
   })
 })
