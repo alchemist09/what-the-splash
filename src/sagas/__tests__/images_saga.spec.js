@@ -25,6 +25,7 @@ describe("Images Saga", () => {
     
     expect(api.fetchImages.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setImages(mockedImages))
+    api.fetchImages.mockReset()
   })
 
   test("should handle error in case of fail", async () => {
@@ -41,5 +42,6 @@ describe("Images Saga", () => {
     
     expect(api.fetchImages.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setError(error_type))
+    api.fetchImages.mockReset()
   })
 })
