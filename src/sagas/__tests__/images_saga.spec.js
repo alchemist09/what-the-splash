@@ -2,7 +2,7 @@ import { getPage, handleImagesLoad } from "../images_saga";
 import { runSaga } from 'redux-saga'
 import { fetchImages } from '../../api'
 import * as api from '../../api'
-import { setImages } from "../../actions";
+import { setError, setImages } from "../../actions";
 
 describe("Images Saga", () => {
   test("should give us the next page", () => {
@@ -28,5 +28,23 @@ describe("Images Saga", () => {
     
     expect(api.fetchImages.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setImages(mockedImages))
+  })
+
+  test("should handle error in case of fail", async () => {
+    const dispatchedActions = []
+    const fakeStore = {
+      dispatch: action => dispatchedActions.push(action),
+      getState: () => ({ nextPage: 1 })
+    }
+
+    const error_type = "Ooops!! some error occured"
+    api.fetchImages = jest.fn(() => Promise.reject(error_type))
+
+    await runSaga(fakeStore, handleImagesLoad).done
+    console.log(dispatchedActions)
+    console.log(fakeStore.getState())
+    
+    expect(api.fetchImages.mock.calls.length).toBe(1)
+    expect(dispatchedActions).toContainEqual(setError(error_type))
   })
 })
