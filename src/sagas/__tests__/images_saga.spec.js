@@ -1,6 +1,5 @@
 import { getPage, handleImagesLoad } from "../images_saga";
 import { runSaga } from 'redux-saga'
-import { fetchImages } from '../../api'
 import * as api from '../../api'
 import { setError, setImages } from "../../actions";
 
@@ -23,8 +22,6 @@ describe("Images Saga", () => {
     api.fetchImages = jest.fn(() => Promise.resolve(mockedImages))
 
     await runSaga(fakeStore, handleImagesLoad).done
-    console.log(dispatchedActions)
-    console.log(fakeStore.getState())
     
     expect(api.fetchImages.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setImages(mockedImages))
@@ -41,8 +38,6 @@ describe("Images Saga", () => {
     api.fetchImages = jest.fn(() => Promise.reject(error_type))
 
     await runSaga(fakeStore, handleImagesLoad).done
-    console.log(dispatchedActions)
-    console.log(fakeStore.getState())
     
     expect(api.fetchImages.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setError(error_type))
