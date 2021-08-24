@@ -25,5 +25,6 @@ describe('Stats Saga', () => {
 
     expect(api.fetchStats.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setSiteStats(mockedStats))
+    api.fetchStats.mockReset()
   })
 })
