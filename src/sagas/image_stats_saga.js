@@ -3,7 +3,7 @@ import { take, fork, call, put } from 'redux-saga/effects'
 import { fetchImageStats } from '../api'
 import { loadImageStats, setImageStats, setImageStatsError} from '../actions'
 
-function* handleImageStatsLoad(id) {
+export function* handleImageStatsLoad(id) {
   console.log(`handle stats request for image ${id}`)
   for(let i=0; i < 3; i++) {
     try {
