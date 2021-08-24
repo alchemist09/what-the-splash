@@ -12,11 +12,18 @@ describe('Stats Saga', () => {
       getState: () => {}
     }
 
-    const site_stats = await api.fetchStats()
+    const mockedStats = {
+      downloads: 1000,
+      views: 500,
+      new_photos: 200
+    }
+
+    api.fetchStats = jest.fn(() => Promise.resolve(mockedStats))
     await runSaga(fakeStore, handleStatsLoad).done
     console.log(dispatchedActions)
-    console.log(site_stats)
+    // console.log(site_stats)
 
-    expect(dispatchedActions).toContainEqual(setSiteStats(site_stats))
+    expect(api.fetchStats.mock.calls.length).toBe(1)
+    expect(dispatchedActions).toContainEqual(setSiteStats(mockedStats))
   })
 })
