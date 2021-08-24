@@ -9,7 +9,7 @@ describe('Stats Saga', () => {
     const dispatchedActions =  []
     const fakeStore = {
       dispatch: action => dispatchedActions.push(action),
-      getState: () => {}
+      getState: () => ({})
     }
 
     const mockedStats = {
