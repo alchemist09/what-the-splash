@@ -3,7 +3,7 @@ import { setSiteStats, setSiteStatsError } from '../actions'
 import { STATS } from '../constants'
 import { fetchStats } from '../api'
 
-function* handleStatsLoad() {
+export function* handleStatsLoad() {
   try {
     const image_stats = yield call(fetchStats)
     yield put(setSiteStats(image_stats))
