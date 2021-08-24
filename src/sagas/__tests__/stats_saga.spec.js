@@ -1,7 +1,7 @@
 import { handleStatsLoad } from '../stats_saga'
 import { runSaga } from 'redux-saga'
 import * as api from '../../api'
-import { setSiteStats } from '../../actions'
+import { setSiteStats, setSiteStatsError } from '../../actions'
 
 
 describe('Stats Saga', () => {
@@ -24,5 +24,21 @@ describe('Stats Saga', () => {
     expect(api.fetchStats.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(setSiteStats(mockedStats))
     api.fetchStats.mockReset()
+  })
+
+  test('should handle error while loading site stats in case of failure', async () => {
+      const dispatchedActions = []
+      const fakeStore = {
+        dispatch: action => dispatchedActions.push(action),
+        getState: () => ({})
+      }
+
+      const error_var = "Oops!! something went wrong"
+      api.fetchStats = jest.fn(() => Promise.reject(error_var))
+      await runSaga(fakeStore, handleStatsLoad).done;
+      console.log(dispatchedActions)
+
+      expect(api.fetchStats.mock.calls.length).toBe(1)
+      expect(dispatchedActions).toContainEqual(setSiteStatsError(error_var))
   })
 })
