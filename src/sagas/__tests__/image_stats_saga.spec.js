@@ -10,24 +10,49 @@ describe("Image Stats Saga", () => {
       dispatch: action => dispatchedActions.push(action),
       getState: () => ({})
     }
-    const pageNum = 1;
-    const images = await api.fetchImages(pageNum)
-    const currImg = images[0]
-    const img_id = currImg.id
 
-    const image_stats = await api.fetchImageStats(img_id);
-    const { downloads, views, likes } = image_stats
+    // const pageNum = 1;
+    // const images = await api.fetchImages(pageNum)
+    // const currImg = images[0]
+    // const img_id = currImg.id
+    
+    const fakeImageId = "XYZ_001"
 
-    await runSaga(fakeStore, handleImageStatsLoad, img_id).done
+    const fakeStats = {
+      downloads: {
+        total: 2000
+      },
+      views: {
+        total: 9000
+      },
+      likes: {
+        total: 250
+      }
+    }
+    
+    api.fetchImageStats = jest.fn(() => Promise.resolve(fakeStats))
 
-    const expectedActions = []
-    expectedActions.push(loadImageStats(img_id))
-    expectedActions.push(setImageStats(img_id, downloads.total, likes.total, views.total))
+    // const image_stats = await api.fetchImageStats(img_id);
+    // const { downloads, views, likes } = image_stats
+
+    await runSaga(fakeStore, handleImageStatsLoad, fakeImageId).done
+
+    const { downloads, views, likes } = fakeStats
+    console.log("downloads: ", downloads)
+    console.log("views: ", views)
+    console.log("likes: ", likes)
 
     console.log(dispatchedActions)
-    console.log(image_stats)
-    console.log(expectedActions)
 
-    expect(dispatchedActions).toContainEqual(loadImageStats(img_id), setImageStats(img_id, downloads.total, likes.total, views.total))
+    console.log(dispatchedActions[1].payload)
+
+    const myObj = setImageStats(fakeImageId, downloads, views, likes)
+    console.log(myObj)
+
+    const anotherObj = {
+      someProp: "hahaha"
+    }
+
+    expect(dispatchedActions).toContainEqual(loadImageStats(fakeImageId), setImageStats(fakeImageId, downloads.total, views.total, likes.total))
   })
 })
