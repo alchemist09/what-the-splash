@@ -4,7 +4,7 @@ import * as api from '../../api'
 import { setSiteStats, setSiteStatsError } from '../../actions'
 
 
-describe('Stats Saga', () => {
+describe('Site Stats Saga', () => {
   let dispatchedActions = null
   let fakeStore = null
 
