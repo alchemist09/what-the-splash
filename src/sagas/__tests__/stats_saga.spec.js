@@ -5,13 +5,18 @@ import { setSiteStats, setSiteStatsError } from '../../actions'
 
 
 describe('Stats Saga', () => {
-  test('should load general statistics and handle them if successful', async () => {
-    const dispatchedActions =  []
-    const fakeStore = {
+  let dispatchedActions = null
+  let fakeStore = null
+
+  beforeEach(() => {
+    dispatchedActions = []
+    fakeStore = {
       dispatch: action => dispatchedActions.push(action),
       getState: () => ({})
     }
+  })
 
+  test('should load general statistics and handle them if successful', async () => {
     const mockedStats = {
       downloads: 1000,
       views: 500,
@@ -27,12 +32,6 @@ describe('Stats Saga', () => {
   })
 
   test('should handle error while loading site stats in case of failure', async () => {
-      const dispatchedActions = []
-      const fakeStore = {
-        dispatch: action => dispatchedActions.push(action),
-        getState: () => ({})
-      }
-
       const error_var = "Oops!! something went wrong"
       api.fetchStats = jest.fn(() => Promise.reject(error_var))
       await runSaga(fakeStore, handleStatsLoad).done;
