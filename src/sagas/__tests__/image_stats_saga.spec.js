@@ -30,9 +30,10 @@ describe("Image Stats Saga", () => {
     await runSaga(fakeStore, handleImageStatsLoad, fakeImageId).done
 
     const { downloads, views, likes } = fakeStats
+    console.log(dispatchedActions)
 
     expect(api.fetchImageStats.mock.calls.length).toBe(1)
-    expect(dispatchedActions).toContainEqual(loadImageStats(fakeImageId), setImageStats(fakeImageId, downloads.total, views.total, likes.total))
+    expect(dispatchedActions).toEqual([loadImageStats(fakeImageId), setImageStats(fakeImageId, downloads.total, views.total, likes.total)])
     api.fetchImageStats.mockReset()
   })
 })
