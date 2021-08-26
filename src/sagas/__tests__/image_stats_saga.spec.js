@@ -15,13 +15,7 @@ describe("Image Stats Saga", () => {
     }
   })
 
-  test("should load statistics for a particular image and handle them if successful", async () => {
-    // const dispatchedActions = []
-    // const fakeStore = {
-    //   dispatch: action => dispatchedActions.push(action),
-    //   getState: () => ({})
-    // }
-    
+  test("should load statistics for a particular image and handle them if successful", async () => {    
     const fakeImageId = "XYZ_001"
 
     const fakeStats = {
@@ -49,12 +43,6 @@ describe("Image Stats Saga", () => {
   })
 
   test("should handle error while loading image statistics in case of error", async () => {
-    // const dispatchedActions = []
-    // const fakeStore = {
-    //   dispatch: action => dispatchedActions.push(action),
-    //   getState: () => ({})
-    // }
-
     const fakeImageId = "ABC_123"
     const some_error = "Oops!! Unexpected Error occured"
     api.fetchImageStats = jest.fn(() => Promise.reject(some_error))
