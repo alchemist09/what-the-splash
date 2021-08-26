@@ -52,6 +52,7 @@ describe("Image Stats Saga", () => {
 
     console.log(dispatchedActions)
 
+    expect(api.fetchImageStats.mock.calls.length).toBe(3)
     expect(dispatchedActions).toEqual([
       loadImageStats(fakeImageId),
       loadImageStats(fakeImageId),
