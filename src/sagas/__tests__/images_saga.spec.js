@@ -4,6 +4,17 @@ import * as api from '../../api'
 import { setError, setImages } from "../../actions";
 
 describe("Images Saga", () => {
+  let dispatchedActions = null
+  let fakeStore = null
+
+  beforeEach(() => {
+    dispatchedActions = []
+    fakeStore = {
+      dispatch: action => dispatchedActions.push(action),
+      getState: () => ({})
+    }
+  })
+
   test("should give us the next page", () => {
     const nextPage = 1
     const state = { nextPage }
@@ -12,11 +23,11 @@ describe("Images Saga", () => {
   })
 
   test("should load images and handle them in case of success", async () => {
-    const dispatchedActions = []
-    const fakeStore = {
-      dispatch: action => dispatchedActions.push(action),
-      getState: () => ({ nextPage: 1 })
-    }
+    // const dispatchedActions = []
+    // const fakeStore = {
+    //   dispatch: action => dispatchedActions.push(action),
+    //   getState: () => ({ nextPage: 1 })
+    // }
 
     const mockedImages = ['image1', 'image2', 'image3']
     api.fetchImages = jest.fn(() => Promise.resolve(mockedImages))
@@ -29,11 +40,11 @@ describe("Images Saga", () => {
   })
 
   test("should handle error in case of fail", async () => {
-    const dispatchedActions = []
-    const fakeStore = {
-      dispatch: action => dispatchedActions.push(action),
-      getState: () => ({ nextPage: 1 })
-    }
+    // const dispatchedActions = []
+    // const fakeStore = {
+    //   dispatch: action => dispatchedActions.push(action),
+    //   getState: () => ({ nextPage: 1 })
+    // }
 
     const error_type = "Ooops!! some error occured"
     api.fetchImages = jest.fn(() => Promise.reject(error_type))
