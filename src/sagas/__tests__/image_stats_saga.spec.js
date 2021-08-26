@@ -31,6 +31,8 @@ describe("Image Stats Saga", () => {
 
     const { downloads, views, likes } = fakeStats
 
+    expect(api.fetchImageStats.mock.calls.length).toBe(1)
     expect(dispatchedActions).toContainEqual(loadImageStats(fakeImageId), setImageStats(fakeImageId, downloads.total, views.total, likes.total))
+    api.fetchImageStats.mockReset()
   })
 })
