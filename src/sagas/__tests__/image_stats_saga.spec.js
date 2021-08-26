@@ -59,6 +59,6 @@ describe("Image Stats Saga", () => {
       loadImageStats(fakeImageId),
       setImageStatsError(fakeImageId, some_error)
     ])
-
+    api.fetchImageStats.mockReset()
   })
 })
