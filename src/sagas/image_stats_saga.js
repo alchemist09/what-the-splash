@@ -1,10 +1,11 @@
 import { IMAGES } from '../constants'
 import { take, fork, call, put } from 'redux-saga/effects'
 import { fetchImageStats } from '../api'
-import { loadImageStats, setImageStats, setImageStatsError} from '../actions'
+import { loadImageStats, setImageStats, setImageStatsError } from '../actions'
 
 export function* handleImageStatsLoad(id) {
   console.log(`handle stats request for image ${id}`)
+  let err_value = null
   for(let i=0; i < 3; i++) {
     try {
       yield put(loadImageStats(id))
@@ -22,10 +23,12 @@ export function* handleImageStatsLoad(id) {
       //   id,
       //   error
       // }))
+      err_value = error
     }
   }
 
-  yield put(setImageStatsError(id, `error loading stats for image ID: ${id}`))
+  // yield put(setImageStatsError(id, `error loading stats for image ID: ${id}`))
+  yield put(setImageStatsError(id, err_value.toString()))
 }
 
 function* watchImageStatsLoad() {
