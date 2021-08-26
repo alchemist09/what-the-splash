@@ -4,12 +4,23 @@ import * as api from '../../api'
 import { loadImageStats, setImageStats, setImageStatsError } from '../../actions'
 
 describe("Image Stats Saga", () => {
-  test("should load statistics for a particular image and handle them if successful", async () => {
-    const dispatchedActions = []
-    const fakeStore = {
+  let dispatchedActions = null
+  let fakeStore = null
+
+  beforeEach(() => {
+    dispatchedActions = []
+    fakeStore = {
       dispatch: action => dispatchedActions.push(action),
       getState: () => ({})
     }
+  })
+
+  test("should load statistics for a particular image and handle them if successful", async () => {
+    // const dispatchedActions = []
+    // const fakeStore = {
+    //   dispatch: action => dispatchedActions.push(action),
+    //   getState: () => ({})
+    // }
     
     const fakeImageId = "XYZ_001"
 
@@ -38,11 +49,11 @@ describe("Image Stats Saga", () => {
   })
 
   test("should handle error while loading image statistics in case of error", async () => {
-    const dispatchedActions = []
-    const fakeStore = {
-      dispatch: action => dispatchedActions.push(action),
-      getState: () => ({})
-    }
+    // const dispatchedActions = []
+    // const fakeStore = {
+    //   dispatch: action => dispatchedActions.push(action),
+    //   getState: () => ({})
+    // }
 
     const fakeImageId = "ABC_123"
     const some_error = "Oops!! Unexpected Error occured"
