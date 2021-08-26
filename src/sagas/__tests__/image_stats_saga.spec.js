@@ -1,7 +1,7 @@
 import { runSaga } from 'redux-saga'
 import { handleImageStatsLoad } from '../image_stats_saga'
 import * as api from '../../api'
-import { loadImageStats, setImageStats } from '../../actions'
+import { loadImageStats, setImageStats, setImageStatsError } from '../../actions'
 
 describe("Image Stats Saga", () => {
   test("should load statistics for a particular image and handle them if successful", async () => {
@@ -35,5 +35,29 @@ describe("Image Stats Saga", () => {
     expect(api.fetchImageStats.mock.calls.length).toBe(1)
     expect(dispatchedActions).toEqual([loadImageStats(fakeImageId), setImageStats(fakeImageId, downloads.total, views.total, likes.total)])
     api.fetchImageStats.mockReset()
+  })
+
+  test("should handle error while loading image statistics in case of error", async () => {
+    const dispatchedActions = []
+    const fakeStore = {
+      dispatch: action => dispatchedActions.push(action),
+      getState: () => ({})
+    }
+
+    const fakeImageId = "ABC_123"
+    const some_error = "Oops!! Unexpected Error occured"
+    api.fetchImageStats = jest.fn(() => Promise.reject(some_error))
+
+    await runSaga(fakeStore, handleImageStatsLoad, fakeImageId).done
+
+    console.log(dispatchedActions)
+
+    expect(dispatchedActions).toEqual([
+      loadImageStats(fakeImageId),
+      loadImageStats(fakeImageId),
+      loadImageStats(fakeImageId),
+      setImageStatsError(fakeImageId, some_error)
+    ])
+
   })
 })
