@@ -22,7 +22,6 @@ const Stats = ({ stats, id }) => {
 
     if(stats[id] && stats[id].loading) {
       return <span className="image-stats"><img className="icon-download" src={icon_loading} alt="loading stats" /></span>
-      // return <p>Loading.......</p>
     }
 
     if(stats[id] && !stats[id].loading) {
