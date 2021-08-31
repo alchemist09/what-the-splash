@@ -11,9 +11,6 @@ const Stats = ({ stats, id }) => {
     return '<span>Loading......</span>'
   }
 
-  console.log("Stats Prop", stats)
-  console.log("Stats ID: ", id)
-
   const renderImageStats = () => {
     if(stats[id] && stats[id].error) {
       const alt_mesg = `error loading stats for image ID: ${id}`
