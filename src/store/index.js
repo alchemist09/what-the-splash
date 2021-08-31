@@ -14,7 +14,7 @@ const configureStore = () => {
     )
   )
 
-  const taskObject = sagaMiddleware.run(rootSaga)
+  sagaMiddleware.run(rootSaga)
   return store
 }
 
