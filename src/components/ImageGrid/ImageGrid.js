@@ -19,9 +19,6 @@ class ImageGrid extends Component {
     render() {
         const { loading, images, stats, image_stats, error, loadImages } = this.props
 
-        console.log('IMAGE STATS: ', image_stats)
-        console.log("IMAGES: ", images)
-
         return (
             <div className="content">
                 <section className="grid">
