@@ -19,15 +19,10 @@ export function* handleImageStatsLoad(id) {
       ))
       return true
     } catch (error) {
-      // yield put(setImageStatsError({
-      //   id,
-      //   error
-      // }))
       err_value = error
     }
   }
-
-  // yield put(setImageStatsError(id, `error loading stats for image ID: ${id}`))
+  
   yield put(setImageStatsError(id, err_value.toString()))
 }
 
