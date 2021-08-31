@@ -8,7 +8,6 @@ export const getPage = state => state.nextPage
 export function* handleImagesLoad() {
   try {
     const page = yield select(getPage)
-    // console.log('page', page)
     const images = yield call(fetchImages, page)
     yield put(setImages(images))
   } catch (error) {
