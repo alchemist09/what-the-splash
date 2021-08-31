@@ -4,9 +4,7 @@ const URL_STATS = "https://api.unsplash.com/stats/"
 
 const fetchImages = async page => {
   const response = await fetch(`${URL}${KEY}&per_page=3&page=${page}`)
-  // console.log(response)
   const data = await response.json()
-  // console.log("[DATA].......", data)
   if(response.status >= 400) {
     throw new Error(data.errors)
   }
@@ -24,7 +22,6 @@ const fetchStats = async () => {
 }
 
 const fetchImageStats = async id => {
-  // throw new Error('UGLY Error')
   const response = await fetch(`${URL}${id}/statistics${KEY}`)
   const data = await response.json()
   if(response.data >= 400) {
