@@ -4,7 +4,6 @@ import { fetchImageStats } from '../api'
 import { loadImageStats, setImageStats, setImageStatsError } from '../actions'
 
 export function* handleImageStatsLoad(id) {
-  console.log(`handle stats request for image ${id}`)
   let err_value = null
   for(let i=0; i < 3; i++) {
     try {
